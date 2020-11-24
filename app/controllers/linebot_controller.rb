@@ -26,7 +26,7 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
-            Main.new(content: event.message['text'])
+            Main.new(content: event.message['text']).save
             message = {
               type: 'text',
               text: event.message['text']
