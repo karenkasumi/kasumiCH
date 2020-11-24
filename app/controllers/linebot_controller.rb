@@ -26,6 +26,7 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
+            Main.new(content: event.message['text'])
             message = {
               type: 'text',
               text: event.message['text']
@@ -36,5 +37,9 @@ class LinebotController < ApplicationController
       }
   
       head :ok
+    end
+
+    def index
+      @posts = Main.all
     end
   end

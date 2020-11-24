@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>掲示板</title>
+
+
+</head>
+
+<body>
+<p><a name="top"></a>
+<a href="../index.htm">ホーム</a>
+<a href="#bottom">■書込■</a></p>
+<hr>
+
+<h1>掲示板</h1>
+<% @posts.each do |post| %>
+<dl>
+<dt><a name="&gt;&gt;1"><%=post.id%></a> ：<span>名無し</span> ：<%=post.created_at%> ID:unknown<dd><%=post.content%><br><br>
+</dl>
+<%end%>
+
+<hr>
+<center><a href="javascript:location.reload(true);">新着レスの表示</a></center>
+<hr>
+
+<p><a name="bottom"></a>
+<a href="../../">ホーム</a>
+<a href="#top">■先頭■</a></p>
+
+
+</body>
+</html>
