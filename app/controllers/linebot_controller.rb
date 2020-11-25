@@ -29,12 +29,12 @@ class LinebotController < ApplicationController
             if event.message['text'].match(/^view:/) then
                 res=""
                 n=Main.all.length
-                for i in 0..10
-                  res << Main.all[n-10+i].content
+                for i in 0..9
+                  res <<"["<<n-10+i<<":"<< Main.all[n-10+i].content<<"]"
                 end
                 message = {
                     type: 'text',
-                    text: 'test'
+                    text: res
                   }
                   client.reply_message(event['replyToken'], message)    
             else
