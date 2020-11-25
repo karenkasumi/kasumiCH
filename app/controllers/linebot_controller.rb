@@ -26,7 +26,6 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
-            Main.new(content: event.message['text']).save
             if event.message['text'].match(/^view:/) then
                 res=""
                 n=Main.all.length
@@ -39,6 +38,7 @@ class LinebotController < ApplicationController
                   }
                   client.reply_message(event['replyToken'], message)    
             else
+                Main.new(content: event.message['text']).save
                 message = {
                     type: 'text',
                     text: event.message['text']
