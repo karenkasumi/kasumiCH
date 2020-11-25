@@ -27,11 +27,24 @@ class LinebotController < ApplicationController
           case event.type
           when Line::Bot::Event::MessageType::Text
             Main.new(content: event.message['text']).save
-            message = {
-              type: 'text',
-              text: event.message['text']
-            }
-            client.reply_message(event['replyToken'], message)
+            if event.message['text'].match(/^view:/) then
+                res=""
+                n=Main.all.length
+                for i in 0..10
+                  res << n-i << ":" << Main.all[n-10+i].content
+                end
+                message = {
+                    type: 'text',
+                    text: res
+                  }
+                  client.reply_message(event['replyToken'], message)    
+            else
+                message = {
+                    type: 'text',
+                    text: event.message['text']
+                  }
+                  client.reply_message(event['replyToken'], message)        
+            end  
           end
         end
       }
