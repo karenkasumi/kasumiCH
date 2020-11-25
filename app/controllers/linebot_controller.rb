@@ -30,7 +30,7 @@ class LinebotController < ApplicationController
                 res=""
                 n=Main.all.length
                 for i in 0..9
-                  res <<"["<<n-10+i<<":"<< Main.all[n-10+i].content<<"]"
+                  res <<"["<<Main.all[n-10+i]<<":"<< Main.all[n-10+i].content<<"]"
                 end
                 message = {
                     type: 'text',
