@@ -75,6 +75,6 @@ class LinebotController < ApplicationController
     end
 
     def index
-      @posts = Main.all
+      @posts = Main.all.order(created_at: "ASC")
     end
   end
