@@ -26,7 +26,7 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
-            message=html_escape(event.message['text'])
+            message=h(event.message['text'])
             if messege.match(/^view:/) then
                 res=""
                 n=Main.all.length
