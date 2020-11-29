@@ -39,13 +39,6 @@ class LinebotController < ApplicationController
                     text: res
                   }
                   client.reply_message(event['replyToken'], message)
-            elsif message.match(/http/) then
-                URI.extract(message).uniq.each do |url|
-                    sub_text = ""
-                    sub_text << "<a href=" << url << " target=\"_blank\">" << url << "</a>"
-                
-                    massage.gsub!(url, sub_text)
-                  end
             else
                 if message.match(/^red:/) then
                     message.gsub!(/red:/,"")
