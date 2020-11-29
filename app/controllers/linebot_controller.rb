@@ -43,12 +43,12 @@ class LinebotController < ApplicationController
                 if message.match(/^red:/) then
                     message.delete!("red:")
                     colmessage=""
-                    colmessage << "<front color=\"red\">" << message << "</front>"
+                    colmessage << "<font color=\"red\">" << message << "</font>"
                     message=colmessage
                 elsif message.match(/^green:/) then
                     message.delete!("green:")
                     colmessage=""
-                    colmessage << "<front color=\"green\">" << message << "</front>"
+                    colmessage << "<font color=\"green\">" << message << "</font>"
                     message=colmessage
                 end
                 Main.new(content: message).save
