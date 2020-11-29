@@ -16,7 +16,7 @@
 <h1>掲示板</h1>
 <% @posts.each do |post| %>
 <dl>
-<dt><a name="&gt;&gt;1"><%=post.id%></a> ：<span>名無し</span> ：<%=post.created_at%> <%=post.lineid%> <dd><%= post.content.html_safe %><br><br>
+<dt><a name="&gt;&gt;1"><%=post.id%></a> ：<span>名無し</span> ：<%=post.created_at%> <%=post.lineid.slice(0,5)%> <dd><%= post.content.html_safe %><br><br>
 </dl>
 <%end%>
 
