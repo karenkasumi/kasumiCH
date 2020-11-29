@@ -28,7 +28,7 @@ class LinebotController < ApplicationController
           case event.type
           when Line::Bot::Event::MessageType::Text
             message=CGI.escapeHTML(event.message['text'])
-            Main.new(lineid:event.source['userId'])
+            Main.new(lineid:event['source']['userId'])
             if message.match(/^view:/) then
                 res=""
                 n=Main.all.length
