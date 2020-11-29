@@ -58,13 +58,13 @@ class LinebotController < ApplicationController
                     colmessage << "<font color=\"green\">" << message << "</font>"
                     message=colmessage
                 end
-                
+
                 if message.match(/http/) then
                     URI.extract(message).uniq.each do |url|
                       sub_text = ""
                       sub_text << "<a href=" << url << " target=\"_blank\">" << url << "</a>"
                 
-                      massage.gsub!(url, sub_text)
+                      message.gsub!(url, sub_text)
                     end
                 end
                 Main.new(content: message).save
