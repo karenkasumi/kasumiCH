@@ -28,7 +28,7 @@ class LinebotController < ApplicationController
           case event.type
           when Line::Bot::Event::MessageType::Text
             message=CGI.escapeHTML(event.message['text'])
-            if messege.match(/^view:/) then
+            if message.match(/^view:/) then
                 res=""
                 n=Main.all.length
                 for i in 0..9
@@ -40,7 +40,7 @@ class LinebotController < ApplicationController
                   }
                   client.reply_message(event['replyToken'], message)
             else
-                if massege.match(/^red:/) then
+                if message.match(/^red:/) then
                     message.delete!("red:")
                     colmessage=""
                     colmessage << "<front color=\"red\">" << message << "</front>"
