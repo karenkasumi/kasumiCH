@@ -1,5 +1,6 @@
 class LinebotController < ApplicationController
     require 'line/bot'  # gem 'line-bot-api'
+    require 'cgi/util'
   
     # callbackアクションのCSRFトークン認証を無効
     protect_from_forgery :except => [:callback]
@@ -26,7 +27,7 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
-            message=h(event.message['text'])
+            message=html_escape(event.message['text'])
             if messege.match(/^view:/) then
                 res=""
                 n=Main.all.length
