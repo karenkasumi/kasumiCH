@@ -26,7 +26,8 @@ class LinebotController < ApplicationController
         when Line::Bot::Event::Message
           case event.type
           when Line::Bot::Event::MessageType::Text
-            if event.message['text'].match(/^view:/) then
+            message=html_escape(event.message['text'])
+            if messege.match(/^view:/) then
                 res=""
                 n=Main.all.length
                 for i in 0..9
@@ -36,12 +37,23 @@ class LinebotController < ApplicationController
                     type: 'text',
                     text: res
                   }
-                  client.reply_message(event['replyToken'], message)    
+                  client.reply_message(event['replyToken'], message)
             else
-                Main.new(content: event.message['text']).save
+                if massege.match(/^red:/) then
+                    message.delete!("red:")
+                    colmessage=""
+                    colmessage << "<front color="red">" << message << "</front>"
+                    message=colmessage
+                elsif message.match(/^green:/) then
+                    message.delete!("green:")
+                    colmessage=""
+                    colmessage << "<front color="green">" << message << "</front>"
+                    message=colmessage
+                end
+                Main.new(content: message).save
                 message = {
                     type: 'text',
-                    text: event.message['text']
+                    text: message
                   }
                   client.reply_message(event['replyToken'], message)        
             end  
