@@ -41,15 +41,22 @@ class LinebotController < ApplicationController
                   client.reply_message(event['replyToken'], message)
             else
                 if message.match(/^red:/) then
-                    message.gsub!(/red:/,"")
+                    message.sub!(/red:/,"")
                     colmessage=""
                     colmessage << "<font color=\"red\">" << message << "</font>"
                     message=colmessage
                 elsif message.match(/^green:/) then
-                    message.gsub!(/green:/,"")
+                    message.sub!(/green:/,"")
                     colmessage=""
                     colmessage << "<font color=\"green\">" << message << "</font>"
                     message=colmessage
+                elsif message.match(/^col:(.+):/) then
+                    col=""
+                    col << "/" << message.match(/^col:(.+):/)[1] << "/"
+                    color message.match(/^col:(.+):/)[1]
+                    message.sub!(col.to_regexp,"")
+                    colmessage=""
+                    colmessage << "<font color=\"" << color << "\">" << message << "</font>"
                 end
 
                 if message.match(/http/) then
