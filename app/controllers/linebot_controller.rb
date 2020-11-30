@@ -51,12 +51,11 @@ class LinebotController < ApplicationController
                     colmessage << "<font color=\"green\">" << message << "</font>"
                     message=colmessage
                 elsif message.match(/^col:(.+):/) then
-                    col=""
-                    col << "/" << message.match(/^col:(.+):/) << "/"
                     color=message.match(/^col:(.+):/)[1]
                     message.sub!(/^col:(.+):/,"")
                     colmessage=""
                     colmessage << "<font color=\"" << color << "\">" << message << "</font>"
+                    message=colmessage
                 end
 
                 if message.match(/http/) then
